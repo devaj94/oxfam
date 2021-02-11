@@ -130,7 +130,7 @@ nav{
     width: 100%;
 }
 .landing-header .container{
-    width: calc(100% - 76px);
+    max-width: calc(100% - 76px);
 }
 .landing-header .site-branding img{
     filter: grayscale(1) brightness(2);
