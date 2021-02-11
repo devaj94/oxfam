@@ -7,6 +7,8 @@
  * @package OXFAM_e-Commerce
  */
 
+define('THEME_URI', get_template_directory_uri());
+
 if ( ! defined( '_S_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
 	define( '_S_VERSION', '1.0.0' );
@@ -50,7 +52,7 @@ if ( ! function_exists( 'oxfam_e_commerce_setup' ) ) :
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus(
 			array(
-				'menu-1' => esc_html__( 'Primary', 'oxfam-e-commerce' ),
+				'Primary Navigation' => esc_html__( 'Primary', 'oxfam-e-commerce' ),
 			)
 		);
 
@@ -143,7 +145,13 @@ function oxfam_e_commerce_scripts() {
 	wp_enqueue_style( 'oxfam-e-commerce-style', get_stylesheet_uri(), array(), _S_VERSION );
 	wp_style_add_data( 'oxfam-e-commerce-style', 'rtl', 'replace' );
 
-	wp_enqueue_script( 'oxfam-e-commerce-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
+	wp_enqueue_style('site-fonts', THEME_URI.'/assets/css/fonts.css', array(), _S_VERSION );
+
+	wp_enqueue_style('main-style', THEME_URI.'/assets/css/main.css', array(), _S_VERSION );
+
+	wp_enqueue_script('main-script', THEME_URI.'/assets/js/main.js', array(), _S_VERSION );
+
+	wp_enqueue_script( 'oxfam-e-commerce-navigation', get_template_directory_uri() . '/assets/js/navigation.js', array(), _S_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -178,3 +186,14 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+if( function_exists('acf_add_options_page') ) {
+	
+	acf_add_options_page(array(
+		'page_title' 	=> 'Site General Settings',
+		'menu_title'	=> 'Site Settings',
+		'menu_slug' 	=> 'site-general-settings',
+		'capability'	=> 'edit_posts',
+		'redirect'		=> false
+	));
+	
+}

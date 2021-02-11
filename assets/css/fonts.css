@@ -1,0 +1,20 @@
+@font-face{
+    font-family: 'TStar-Regular';
+    src: url('../fonts/TSTARPRO-Regular.ttf');
+}
+@font-face{
+    font-family: 'TStar-Headline';
+    src: url('../fonts/TSTARPRO-Headline.ttf');
+    src: url('..fonts//TSTARPRO-Headline.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/TSTARPRO-Headline.woff2') format('woff2'),
+        url('../fonts/TSTARPRO-Headline.woff') format('woff'),
+        url('../fonts/TSTARPRO-Headline.svg#TSTARPRO-Headline') format('svg');
+}
+@font-face{
+    font-family: 'TStar-Medium';
+    src: url('../fonts/TSTARPRO-Medium.ttf');
+}
+@font-face{
+    font-family: 'TStar-Bold';
+    src: url('../fonts/TSTARPRO-Bold.ttf');
+}
