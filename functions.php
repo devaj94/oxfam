@@ -156,6 +156,14 @@ function oxfam_e_commerce_scripts() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
+
+	if (is_page_template('templates/homepage-customer.php')) { 
+
+		wp_enqueue_style('swiper-style', THEME_URI.'/assets/css/swiper.min.css', array(), _S_VERSION );
+
+		wp_enqueue_script('swiper-script', THEME_URI.'/assets/js/swiper.min.js', array(), _S_VERSION );
+
+	}
 }
 add_action( 'wp_enqueue_scripts', 'oxfam_e_commerce_scripts' );
 

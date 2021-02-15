@@ -43,7 +43,7 @@
                                 <div class="col-inner">
                                     <?php                                        
                                         if(!empty($title)){
-                                            echo '<h2>'.$title.'</h2>';
+                                            echo '<h2 class="heading--bold">'.$title.'</h2>';
                                         }
                                         if(!empty($link)){
                                             echo '<a href="'.$link['url'].'" target="'.$link['target'].'" class="btn">'.$link['title'].'</a>';
@@ -65,7 +65,7 @@
                     <?php
                         $description = get_field('description_content');
                         if(!empty($description['title'])){
-                            echo '<h3 class="heading--light">'.$description['title'].'</h3>';                            
+                            echo '<h3>'.$description['title'].'</h3>';                            
                         }
                         if(!empty($description['content'])){
                             echo $description['content'];

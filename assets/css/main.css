@@ -9,6 +9,7 @@ body{
     font-size: 16px;
     line-height: 24px;
     font-weight: normal;
+    color: #000;
 }
 :root{
     --dark-green: #008453;
@@ -19,15 +20,15 @@ body.home header:not(.landing-header), body.home footer{
     display: none;
 }
 h1, h2, h3, h4, h5, h6{
-    font-family: 'TStar-Bold';
+    font-family: 'TStar-Headline';
     margin-top: 0;
     margin-bottom: 20px;
 }
 strong, b{
     font-family: 'TStar-Bold';
 }
-.heading--light{
-    font-family: 'TStar-Headline';
+.heading--bold{
+    font-family: 'TStar-Bold';
 }
 .row{
     display: flex;
@@ -56,12 +57,15 @@ a.btn{
     background-color: var(--dark-green);
     letter-spacing: 0.5px;
 }
+a.btn.big-text{
+    font-size: 20.8px;
+}
 .container{
     max-width: calc(100% - 30px);
     margin: auto;
 }
 h2{
-    font-size: 40px;
+    font-size: 27px;
     line-height: normal;
 }
 h3{
@@ -78,8 +82,19 @@ h3{
     padding: 0;
     cursor: pointer;
 }
+.has-bg{
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.text-center{
+    text-align: center;
+}
 /*======= Header =======*/
 .site-header {
+    border-top: 13px solid transparent;
+    border-image: url('../images/site-border.svg');
+    border-image-slice: 15;
     padding: 30px 0;
 }
 .site-branding {
@@ -138,7 +153,7 @@ nav{
 }
 .border-wrap--landing{
     border-top: 7px solid transparent;
-    border-bottom: 10px solid transparent;
+    border-bottom: 11px solid transparent;
     border-image: url('../images/site-border.svg');
     border-image-slice: 15;
     display: flex;
@@ -161,6 +176,7 @@ nav{
 }
 .home--landing h2{
     margin-bottom: 24px;
+    font-size: 40px;
 }
 .home--landing .col-inner{
     position: relative;
@@ -171,7 +187,7 @@ nav{
 .home--landing .col {
     background: #398157;
 }
-.home--landing .col:nth-of-type(2) {
+.home--landing .col:nth-of-type(2), .btn.light {
     background: #719A4D;
 }
 .home--landing .col:nth-of-type(3) {
@@ -225,13 +241,119 @@ nav{
 }
 /*======= Landing Page Ends =======*/
 
+/*======= Homepage B2C  =======*/
+.common--slider {
+    color: #FFF;
+}
+.common--slider .b2c-slider-inner{
+    max-width: calc(100% - 168px);
+    margin: auto;
+    padding: 294px 0 70px;
+}
+.common--slider .swiper-pagination-bullet{
+    width: 9px;
+    height: 9px;
+    background: transparent;
+    border: 1px solid #FFF;
+    opacity: 1;
+    cursor: pointer;
+}
+.common--slider .swiper-pagination-bullet-active{
+    background: #D9D9D9;
+}
+#b2c-slider .b2c-slider-inner > div{
+    width: 50%;
+}
+.common--slider h2{
+    font-size: 30px;
+    margin-bottom: 18px;
+    letter-spacing: 2px;
+}
+.common--slider p{
+    font-size: 27px;
+    margin: 0 0 26px 0;
+    font-family: 'TStar-Bold';
+    letter-spacing: 2px;
+}
+.highlighted_section{
+    background-color: #F7F4F4;
+}
+.highlighted_section.featured--women .container{
+    padding: 60px 0 15px;
+}
+.highlighted_section h2{
+    font-size: 27px;
+    color: var(--dark-green);
+    text-transform: uppercase;
+}
+.fair-trade{
+    padding: 50px 0;
+}
+.fair-trade strong, .fair-trade b{
+    color: var(--dark-green);
+}
+.oxfam-gifts {
+    color: #FFF;
+    padding: 46px 0 50px;
+}
+.oxfam-gifts .row{
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    padding: 47px 55px;
+}
+.oxfam-gifts h2{
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+.oxfam-gifts .col{
+    flex: 0 0 27%;
+}
+.oxfam-gifts p{
+    font-family: 'TStar-Bold';
+    margin: 0 0 20px 0;
+}
+.oxfam-gifts a.btn{
+    background-color: #65AF2B;
+}
+.product--catalog{
+    padding: 68px 0 90px;
+}
+.product--catalog h2{
+    color: var(--dark-green);
+    margin-bottom: 30px;
+}
+.catalog--col{
+    width: calc(100% / 6);
+    padding: 0 12px;
+}
+.catalog--col .round--img{
+    width: 153px;
+    height: 153px;
+    margin-bottom: 20px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.catalog--col .round--img img{
+    object-fit: cover;
+    object-position: 0 0;
+    width: 100%;
+    height: 100%;    
+}
+.catalog--col .catalog--name{
+    color: #5D5D5D;
+    font-size: 22px;
+    font-family: 'TStar-Bold';
+}
+/*======= Homepage B2C Ends =======*/
+
 /*======= Footer =======*/
 .site-footer .footer-bg{
     color: #FFF;
 }
 .site-footer .footer-bg{
     background-color: var(--dark-green);
-    border-bottom: 10px solid transparent;
+    border-bottom: 13px solid transparent;
     border-image: url('../images/site-border.svg');
     border-image-slice: 15;
     padding: 50px 0;
@@ -264,6 +386,9 @@ nav{
 
 @media (min-width: 1200px){
     .container{
-        max-width: 1140px;
+        max-width: 1040px;
+    }
+    .container.container-sm{
+        max-width: 922px;
     }
 }
