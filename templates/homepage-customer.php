@@ -51,22 +51,24 @@
         ?>
         <div class="product-catalog-row row">
             <?php
-                foreach($catalogList as $catalogID){
-                    $link = get_term_link( $catalogID, 'product_cat' );
-                    $name = get_term_by( 'id', $catalogID, 'product_cat' )->name;
-                    $thumbnail_id = get_woocommerce_term_meta( $catalogID, 'thumbnail_id', true );
-                    $image = wp_get_attachment_url( $thumbnail_id );
-                    echo '<div class="catalog--col">
-                        <a href="'.$link.'">
-                            <div class="round--img">';
-                            if(!empty($image)){
-                                echo '<img src="'.$image.'" alt="'.$name.'">';
-                            }
-                            echo '</div>
-                            <div class="catalog--name">'.$name.'</div>
-                        </a>
-                    </div>';
-                }
+                if(!empty($catalogList)){
+                    foreach($catalogList as $catalogID){
+                        $link = get_term_link( $catalogID, 'product_cat' );
+                        $name = get_term_by( 'id', $catalogID, 'product_cat' )->name;
+                        $thumbnail_id = get_woocommerce_term_meta( $catalogID, 'thumbnail_id', true );
+                        $image = wp_get_attachment_url( $thumbnail_id );
+                        echo '<div class="catalog--col">
+                            <a href="'.$link.'">
+                                <div class="round--img">';
+                                if(!empty($image)){
+                                    echo '<img src="'.$image.'" alt="'.$name.'">';
+                                }
+                                echo '</div>
+                                <div class="catalog--name">'.$name.'</div>
+                            </a>
+                        </div>';
+                    }
+                }                
             ?>
         </div>
     </div>
@@ -100,6 +102,24 @@
     ?>
 </section>
 <!-- Women we work with Ends -->
+
+<section class="discover-the-project">
+    <div class="row">
+        <div class="img--col col">
+            <img src="<?php echo THEME_URI.'/assets/images/dis_project.png'; ?>" alt="">
+        </div> 
+        <div class="content--col col">
+            <h2>BE ETHIC, BE TRENDY.</h2>
+            <p>I was a Sari (IWAS) è una linea di abbigliamento e accessori per la persona e per la casa, prodotti in India e realizzati con il tessuto di sari riciclati da donne artigiane della periferia di Mumbai. Un progetto di economia circolare, oltre che un percorso di emancipazione ed empowerment femminile. Per questi valori condivisi, Oxfam, pioniera del Commercio Equosolidale in tanti paesi, è distributore in Italia dei prodotti IWAS. In nome di un commercio davvero etico e della lotta alla povertà e alla isuguaglianza, sempre.</p>
+            <a href="javascript:void(0)" target="" class="btn black big-text">
+                SCOPRI IL PROGETTO
+            </a>
+            <div class="pr--logo">
+                <img src="<?php echo THEME_URI.'/assets/images/ox-sari.svg'; ?>" alt="">
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- Gifts -->
 <section class="oxfam-gifts">

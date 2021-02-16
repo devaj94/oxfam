@@ -23,12 +23,19 @@ h1, h2, h3, h4, h5, h6{
     font-family: 'TStar-Headline';
     margin-top: 0;
     margin-bottom: 20px;
+    line-height: normal;
 }
 strong, b{
     font-family: 'TStar-Bold';
 }
 .heading--bold{
     font-family: 'TStar-Bold';
+}
+.heading--green{
+    color: var(--dark-green);
+}
+.heading--green-light{
+    color: var(--light-green);
 }
 .row{
     display: flex;
@@ -46,7 +53,7 @@ img {
     max-width: 100%;
     max-height: 100%;
 }
-a.btn{
+a.btn, button.btn{
     display: inline-block;
     color: #FFF;
     text-align: center;
@@ -57,12 +64,27 @@ a.btn{
     background-color: var(--dark-green);
     letter-spacing: 0.5px;
 }
-a.btn.big-text{
+button.btn{
+    border: none;
+    color: #FFF;
+    border-radius: 0;
+    outline: none !important;
+    box-shadow: none !important;
+    cursor: pointer;
+}
+a.btn.big-text, button.btn{
     font-size: 20.8px;
+    padding: 8px 16px;
+}
+a.btn.black{
+    background-color: #000;
 }
 .container{
     max-width: calc(100% - 30px);
     margin: auto;
+}
+h1{
+    font-size: 40px;
 }
 h2{
     font-size: 27px;
@@ -250,6 +272,9 @@ nav{
     margin: auto;
     padding: 294px 0 70px;
 }
+.common--slider .swiper-pagination-bullets{
+    bottom: 26px !important;
+}
 .common--slider .swiper-pagination-bullet{
     width: 9px;
     height: 9px;
@@ -278,10 +303,10 @@ nav{
 .highlighted_section{
     background-color: #F7F4F4;
 }
-.highlighted_section.featured--women .container{
+.featured--women .container{
     padding: 60px 0 15px;
 }
-.highlighted_section h2{
+.featured--women h2{
     font-size: 27px;
     color: var(--dark-green);
     text-transform: uppercase;
@@ -294,7 +319,7 @@ nav{
 }
 .oxfam-gifts {
     color: #FFF;
-    padding: 46px 0 50px;
+    padding: 53px 0 53px;
 }
 .oxfam-gifts .row{
     background-size: contain;
@@ -345,7 +370,179 @@ nav{
     font-size: 22px;
     font-family: 'TStar-Bold';
 }
+.discover-the-project {
+    margin-top: 84px;
+}
+.discover-the-project h2{
+    font-size: 35px;
+    line-height: 42px;
+    width: 28%;
+}
+.discover-the-project p{
+    font-family: 'TStar-Medium'; 
+    padding-right: 22%;   
+}
+.discover-the-project a.btn{
+    margin-top: 24px;
+}
+.discover-the-project .col {
+    width: 50%;
+    flex: 0 0 50%;
+}
+.discover-the-project .img--col img{
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.discover-the-project .content--col{
+    box-shadow: 0 1px 7px rgb(0 0 0 / .16);
+    padding: 55px 60px 36px 70px;
+}
+.discover-the-project .pr--logo{
+    text-align: right;
+    margin-top: 10px;
+}
 /*======= Homepage B2C Ends =======*/
+
+/*======= Homepage B2B Retailer =======*/
+.brand--retailer{
+    padding: 50px 0;
+}
+.brand--retailer .brand--listing{
+    margin-left: -75px;
+    margin-right: -75px;
+}
+.brand--listing .col{
+    padding: 0 25px;
+}
+.brand--listing figure{
+    border-radius: 50%;
+    margin: auto;
+    overflow: hidden;
+    width: 241px;
+    height: 153px;
+}
+.brand--listing figure img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+.impact .row{
+    background: #F7F4F4;
+    padding: 30px;
+}
+.impact .row .col{    
+    padding: 0 30px;
+}
+.impact .row .col:first-of-type{
+    border-right: 0.5px solid #C9C7C7;
+}
+.impact h2{
+    margin: 10px 0 12px;
+    color: var(--light-green);
+}
+.impact p{
+    margin: 0;
+}
+.featured--women.b2b h2{
+    color: var(--light-green);
+}
+.dealer--why{
+    padding: 70px 0 60px;
+}
+.dealer--register{
+    transform: translateY(-40%);
+}
+.dealer--register .row{
+    align-items: center;
+    justify-content: space-between;
+    color: #FFFF;
+    padding: 34px 60px;
+}
+.dealer--register h2{
+    margin-bottom: 8px;
+}
+.dealer--register p{
+    font-family: 'TStar-Bold';
+    font-size: 22px;
+    margin: 0;
+}
+.dealer--register button.btn{
+    padding: 10px 24px;
+}
+/*======= Homepage B2B Retailer Ends =======*/
+
+/*======= About Page =======*/
+.about--banner{
+    color: #FFF;
+    padding: 10vw 0;
+}
+.about--banner h1{
+    line-height: 40px;
+}
+.improving-lives{
+    position: relative;
+    margin-bottom: 50px;
+}
+.improving-lives:after{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 100%;
+    background-color: #F7F4F4;
+    z-index: -1;
+    height: calc(100% - 50px);
+}
+.improving-lives .row{
+    align-items: center;
+}
+.improving-lives .img--col figure{
+    width: 291px;
+    height: 291px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0;
+}
+.improving-lives .img--col figure img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.improving-lives .content--col{
+    padding-right: 5vw;
+}
+.improving-lives p{
+    margin: 0;
+}
+.about-section-1 {
+    padding: 45px 0;
+}
+.about-section-3 img{
+    margin: 10px 0;
+}
+.about-section-4 {
+    padding: 30px 0 70px;
+}
+.about-section-4 .row{
+    margin-left: -50px;
+    margin-right: -50px;
+}
+.about-section-4 .col{
+    padding: 0 50px;
+}
+.about-section-4 h4{
+    font-size: 22px;
+}
+.about-section-4 p{
+    font-size: 14px;
+}
+/*======= About Page Ends =======*/
 
 /*======= Footer =======*/
 .site-footer .footer-bg{
