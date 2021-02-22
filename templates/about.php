@@ -123,4 +123,111 @@
 </section>
 <!-- Section 4 Ends -->
 
+<!-- Discover the Projects -->
+<section class="discover--projects highlighted_section text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <?php
+                    $projects = get_field('discover_the_project');
+                    $title = $projects['title'];
+                    if(!empty($title)){
+                        echo '<h2 class="heading--green">'.$title.'</h2>';
+                    }
+                ?>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Discover the Projects Ends -->
+
+<!-- About Disclaimer -->
+<section class="about--disclaimer text-center">
+    <div class="container">
+        <div class="row">
+            <div>
+                <?php
+                    $disclaimer = get_field('disclaimer');
+                    $disclaimerImage = $disclaimer['image'];
+                    $content = $disclaimer['content'];
+                    $highlightedContent = $disclaimer['highlighted_content'];
+                    if(!empty($disclaimerImage)){
+                        echo '<img src="'.$disclaimerImage.'" alt="">';
+                    }
+                ?>
+            </div>
+            <?php
+                if(!empty($content)){
+                    echo '<div>'.$content.'</div>';
+                }
+            ?>
+            <?php
+                if(!empty($highlightedContent)){
+                    echo '<div class="highlighted--content">'.$highlightedContent.'</div>';
+                }
+            ?>
+        </div>
+    </div>
+</section>
+<!-- About Disclaimer Ends -->
+
+<?php
+    $newsPosts = get_posts(array(
+        'post_type' => 'post',
+        'posts_per_page' => 5,
+        'post_status' => 'publish',
+    ));
+    if(count($newsPosts) > 0 ) :
+?>
+<!-- News & Insights -->
+<section class="news--insights highlighted_section text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <?php
+                    $projects = get_field('news_&_insights');
+                    $title = $projects['title'];
+                    $link = $projects['link'];
+                    if(!empty($title)){
+                        echo '<h2 class="heading--green">'.$title.'</h2>';
+                    }
+                ?>
+            </div>
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <?php
+                        foreach($newsPosts as $newsPost){
+                            setup_postdata( $newsPost );
+                            $postImage = get_the_post_thumbnail_url($newsPost->ID, 'full');
+                            echo '<div class="swiper-slide">
+                                    <a href="'.get_the_permalink($newsPost->ID).'">
+                                    <div class="news-col">';
+                                    if(!empty($postImage)){
+                                        echo '<figure>
+                                            <img src="'.$postImage.'" alt="">
+                                        </figure>';
+                                    }
+                                    echo '<h3>'.get_the_title($newsPost->ID).'</h3>';
+                                echo '</div></a></div>';
+                        }
+                        wp_reset_postdata();
+                    ?>
+                </div>
+                <div class="col-12">
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+            </div>
+            <div class="col-12">
+                <?php
+                    if(!empty($link)){
+                        echo '<a href="'.$link['url'].'" class="btn large-text" target="'.$link['target'].'">'.$link['title'].'</a>';
+                    }
+                ?>
+            </div>            
+        </div>
+    </div>
+</section>
+<!-- News & Insights Ends -->
+<?php endif; ?>
 <?php get_footer(); ?>

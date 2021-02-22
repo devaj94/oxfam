@@ -145,27 +145,28 @@ function oxfam_e_commerce_scripts() {
 	wp_enqueue_style( 'oxfam-e-commerce-style', get_stylesheet_uri(), array(), _S_VERSION );
 	wp_style_add_data( 'oxfam-e-commerce-style', 'rtl', 'replace' );
 
+	if (is_page_template($sliderPages)) { 
+
+		wp_enqueue_style('swiper-style', THEME_URI.'/assets/css/swiper.min.css', array(), _S_VERSION );
+
+		wp_enqueue_script('swiper-script', THEME_URI.'/assets/js/swiper.min.js', array(), _S_VERSION, true );
+
+	}
+
 	wp_enqueue_style('site-fonts', THEME_URI.'/assets/css/fonts.css', array(), _S_VERSION );
 
 	wp_enqueue_style('main-style', THEME_URI.'/assets/css/main.css', array(), _S_VERSION );
 
-	wp_enqueue_script('main-script', THEME_URI.'/assets/js/main.js', array(), _S_VERSION );
+	$sliderPages = ['templates/homepage-customer.php', 'templates/homepage-retailer.php', 'templates/about.php'];	
+
+	wp_enqueue_script('main-script', THEME_URI.'/assets/js/main.js', array(), _S_VERSION, true );
 
 	wp_enqueue_script( 'oxfam-e-commerce-navigation', get_template_directory_uri() . '/assets/js/navigation.js', array(), _S_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
-	}	
-
-	$homepages = ['templates/homepage-customer.php', 'templates/homepage-retailer.php'];
-
-	if (is_page_template($homepages)) { 
-
-		wp_enqueue_style('swiper-style', THEME_URI.'/assets/css/swiper.min.css', array(), _S_VERSION );
-
-		wp_enqueue_script('swiper-script', THEME_URI.'/assets/js/swiper.min.js', array(), _S_VERSION );
-
 	}
+
 }
 add_action( 'wp_enqueue_scripts', 'oxfam_e_commerce_scripts' );
 

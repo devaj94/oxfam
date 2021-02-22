@@ -41,9 +41,15 @@ strong, b{
     display: flex;
     flex-wrap: wrap;
 }
+.row {
+    width: 100%;
+}
 .col{
     flex: 1;
     position: relative;
+}
+.col-12{
+    flex: 0 0 100%;
 }
 a{
     text-decoration: none;
@@ -93,6 +99,9 @@ h2{
 h3{
     font-size: 24px;
 }
+h4 {
+    font-size: 18px;
+}
 .unstyled-list{
     list-style-type: none;
     padding: 0;
@@ -111,6 +120,9 @@ h3{
 }
 .text-center{
     text-align: center;
+}
+.common-banner  {
+    color: #FFF;
 }
 /*======= Header =======*/
 .site-header {
@@ -212,7 +224,7 @@ nav{
 .home--landing .col:nth-of-type(2), .btn.light {
     background: #719A4D;
 }
-.home--landing .col:nth-of-type(3) {
+.home--landing .col:nth-of-type(3), .btn.lemon {
     background: #C6CB61;
 }
 .home--landing .col-inner *{
@@ -414,6 +426,7 @@ nav{
 .brand--retailer .brand--listing{
     margin-left: -75px;
     margin-right: -75px;
+    width: auto;
 }
 .brand--listing .col{
     padding: 0 25px;
@@ -474,6 +487,23 @@ nav{
     padding: 10px 24px;
 }
 /*======= Homepage B2B Retailer Ends =======*/
+
+/*======= Homepage B2B Company =======*/
+.fair--trade-companies{
+    padding: 60px 0 45px;
+}
+.fair--trade-companies strong, .fair--trade-companies b{
+    color: var(--dark-green);
+}
+.why-choose--oxfam{
+    padding: 65px 0 15px;
+}
+.dealer--register.register--company{
+    transform: none;
+    margin-bottom: 75px;
+}
+/*======= Homepage B2B Company Ends =======*/
+
 
 /*======= About Page =======*/
 .about--banner{
@@ -542,7 +572,162 @@ nav{
 .about-section-4 p{
     font-size: 14px;
 }
+.about--disclaimer{
+    margin: 30px 0 70px;
+}
+.about--disclaimer .row > div{
+    width: 100%;
+}
+.about--disclaimer p{
+    margin: 0;
+}
+.about--disclaimer .highlighted--content{
+    background: #F7F4F4;
+    padding: 2rem 3rem;
+    margin: 1.3rem 0 0;
+}
+.news--insights{
+    padding: 50px 0;
+}
+.news--insights h2{
+    margin-bottom: 30px;
+}
+.news--insights .swiper-container{
+    width: 100%;
+}
+.news--insights .news-col{
+    padding: 0 15px;
+    position: relative;
+    text-align: left;
+    color: #FFF;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 255px;
+}
+.news--insights .news-col figure{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: calc(100% - 30px);
+    height: 100%;
+    margin: auto;
+    display: block;
+    z-index: -1;
+    right: 0;
+}
+.news--insights .news-col figure img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+.news--insights .news-col h3{
+    margin: auto 0 0;
+    padding: 30px 20px 30px;
+    width: 100%;
+}
+.news--insights a.btn{
+    margin-top: 40px;
+}
+.news--insights .swiper-button-next:after, .news--insights .swiper-button-prev:after{
+    color: #5D5D5D;
+}
 /*======= About Page Ends =======*/
+
+/*======= Brands Page =======*/
+.brands--banner{
+    padding: 230px 0 50px;
+}
+.brands--banner h1{
+    letter-spacing: 1.3px;
+}
+.brands--banner h3{
+    font-family: 'TStar-Bold';
+    font-size: 23px;
+}
+.about-brand{
+    padding: 65px 0;
+}
+.about-brand .row, .persone .row{
+    align-items: center;
+}
+.about-brand figure, .persone figure{
+    width: 322px;
+    height: 322px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0;
+}
+.persone figure{
+    width: 248px;
+    height: 248px;
+}
+.about-brand figure img, .persone figure img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.about-brand .col{
+    padding-left: 55px;
+}
+.about-brand ul, .about-brand ol{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.about-brand ul li, .about-brand ol li {
+    position: relative;
+    padding-left: 30px;
+}
+.about-brand ul li:not(:last-child), .about-brand ol li:not(:last-child){
+    margin-bottom: 24px;
+}
+.about-brand ul li:before, .about-brand ol li:before{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 6px;
+    background: var(--dark-green);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+.the_project{
+    padding: 55px 0 30px;
+}
+.the_project a{
+    font-family: 'TStar-Headline';
+    text-transform: uppercase;
+    color: var(--light-green);
+}
+.persone {
+    padding: 70px 0;
+}
+.persone .content-col{
+    padding-right: 42px;
+}
+.persone h4{
+    margin: 0;
+}
+.persone .content-col p{
+    position: relative;
+}
+.persone .content-col p:before{
+    content: '"';
+    position: absolute;
+    left: -60px;
+    top: 1rem;
+    color: var(--light-green);
+    font-size: 90px;
+    font-family: 'TStar-Headline';
+    font-style: italic;
+    line-height: 35px;
+}
+.brand--products{
+    padding: 50px 0 200px;
+}
+/*======= Brands Page Ends =======*/
+
 
 /*======= Footer =======*/
 .site-footer .footer-bg{
@@ -587,5 +772,11 @@ nav{
     }
     .container.container-sm{
         max-width: 922px;
+    }
+    .common-banner .container{
+        max-width: calc(100% - 168px);
+    }
+    .brands--banner.common-banner .container{
+        max-width: calc(100% - 136px);
     }
 }
