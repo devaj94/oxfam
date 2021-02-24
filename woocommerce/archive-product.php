@@ -32,7 +32,6 @@ do_action( 'woocommerce_before_main_content' );
 
 <?php 
 	$productCategories = getProductCategoriesList();
-	print_r($productCategories);
 	foreach($productCategories as $cat){
 		ob_start();
 	?>		
@@ -53,15 +52,8 @@ do_action( 'woocommerce_before_main_content' );
 		<div class="products-row">
 			<div class="container">
 				<?php  
-					$productsList = do_shortcode('[products limit="4" columns="4" category="'.$cat[5].'"]'); 
-					echo 'asdasd'.empty($productsList);
-					if(!empty($productsList)){
-						echo $productsList; 
-					}
-					else{
-						echo '<h3>No Products Found.</h3>';
-					}
-					
+					$productsList = do_shortcode('[products limit="4" columns="4" category="'.$cat[5].'"]');
+					echo $productsList;
 					unset($productsList);
 				?>
 			</div>			
