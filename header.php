@@ -35,8 +35,8 @@
 					<?php
 						wp_nav_menu(
 							array(
-								'menu' => 'Primary Navigation',
-								'container' => 'ul',
+								'menu' => 'Main Menu',
+								'container' => 'div',
 								'menu_class' => 'unstyled-list'
 							)
 						);
@@ -45,6 +45,39 @@
 				<button class="icon-btn">
 					<img src="<?php echo THEME_URI.'/assets/images/search.svg'; ?>" alt="Search Icon">
 				</button>
+				<ul class="unstyled-list nav-list--2">
+					<?php if(isUserAdmin()): ?>
+					<li class="activeHomeWrap">
+						<span id="activeHome">
+							<span></span>
+							<img src="<?php echo THEME_URI.'/assets/images/dropdown-arrow.svg'; ?>" alt="">
+						</span>
+						<?php
+							wp_nav_menu(array(
+								'menu' => 'Homepages Navigation',
+								'container' => 'ul',
+								'menu_class' => 'unstyled-list site-dropdown homepages-dropdown'
+							));
+						?>
+					</li>
+					<?php endif; ?>
+					<li>
+						<button class="icon-button cart">
+							<?php global $woocommerce; ?>
+							<a class="cart-customlocation" href="<?php echo esc_url(wc_get_cart_url()); ?>" title="<?php _e('View your shopping cart', 'Oxfam'); ?>">				
+							<?php
+								$cart_total = $woocommerce->cart->get_cart_contents_count();
+							?>	
+								<img src="<?php echo get_template_directory_uri().'/assets/images/cart.svg'; ?>" alt="">																	
+								<?php if(WC()->cart->get_cart_contents_count() > 0){
+									echo '<div class="cart-count'.(WC()->cart->get_cart_contents_count() > 99 ? ' cart--big': '').'">
+										<span>'.WC()->cart->get_cart_contents_count().'</span>
+									</div>';
+								} ?>								
+							</a>
+						</button>
+					</li>
+				</ul>
 			</nav>	
 		</div>
 	</header><!-- #masthead -->

@@ -53,6 +53,7 @@ if ( ! function_exists( 'oxfam_e_commerce_setup' ) ) :
 		register_nav_menus(
 			array(
 				'Primary Navigation' => esc_html__( 'Primary', 'oxfam-e-commerce' ),
+				'Homepages Navigation' => esc_html__( 'Homepages', 'oxfam-e-commerce' ),
 			)
 		);
 
@@ -145,6 +146,8 @@ function oxfam_e_commerce_scripts() {
 	wp_enqueue_style( 'oxfam-e-commerce-style', get_stylesheet_uri(), array(), _S_VERSION );
 	wp_style_add_data( 'oxfam-e-commerce-style', 'rtl', 'replace' );
 
+	$sliderPages = ['templates/homepage-customer.php', 'templates/homepage-retailer.php', 'templates/homepage-companies.php', 'templates/about.php'];
+
 	if (is_page_template($sliderPages)) { 
 
 		wp_enqueue_style('swiper-style', THEME_URI.'/assets/css/swiper.min.css', array(), _S_VERSION );
@@ -157,7 +160,7 @@ function oxfam_e_commerce_scripts() {
 
 	wp_enqueue_style('main-style', THEME_URI.'/assets/css/main.css', array(), _S_VERSION );
 
-	$sliderPages = ['templates/homepage-customer.php', 'templates/homepage-retailer.php', 'templates/about.php'];	
+	wp_enqueue_style('custom-woo', THEME_URI.'/assets/css/site-woo.css', array(), _S_VERSION );
 
 	wp_enqueue_script('main-script', THEME_URI.'/assets/js/main.js', array(), _S_VERSION, true );
 
@@ -207,4 +210,105 @@ if( function_exists('acf_add_options_page') ) {
 		'redirect'		=> false
 	));
 	
+}
+add_theme_support( 'woocommerce' );
+// class Description_Walker extends Walker_Nav_Menu
+// {
+//     function start_el( &$output, $item, $depth = 0, $args = null, $id = 0 )
+//     {
+//         $classes = empty($item->classes) ? array () : (array) $item->classes;
+//         $class_names = join(' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item ) );
+//         !empty ( $class_names ) and $class_names = ' class="'. esc_attr( $class_names ) . '"';
+//         $output .= "<div id='menu-item-$item->ID' $class_names>";
+//         $attributes  = '';
+//         !empty( $item->attr_title ) and $attributes .= ' title="'  . esc_attr( $item->attr_title ) .'"';
+//         !empty( $item->target ) and $attributes .= ' target="' . esc_attr( $item->target     ) .'"';
+//         !empty( $item->xfn ) and $attributes .= ' rel="'    . esc_attr( $item->xfn        ) .'"';
+//         !empty( $item->url ) and $attributes .= ' href="'   . esc_attr( $item->url        ) .'"';
+//         $title = apply_filters( 'the_title', $item->title, $item->ID );
+//         $item_output = $args->before
+//         . "<a $attributes>"
+//         . $args->link_before
+//         . $title
+//         . '</a></div>'
+//         . $args->link_after
+//         . $args->after;
+//         $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+//     }
+// }
+
+add_filter( 'woocommerce_add_to_cart_fragments', 'woocommerce_header_add_to_cart_fragment' );
+
+function woocommerce_header_add_to_cart_fragment( $fragments ) {
+	global $woocommerce;
+	ob_start();
+	?>
+	<a class="cart-customlocation" href="<?php echo esc_url(wc_get_cart_url()); ?>" title="<?php _e('View your shopping cart', 'woothemes'); ?>">
+		<?php
+			$cart_total = $woocommerce->cart->get_cart_contents_count();
+		?>
+		<img src="<?php echo THEME_URI.'/assets/images/cart.svg'; ?>" alt="">
+		<?php if(WC()->cart->get_cart_contents_count() > 0){
+			echo '<div class="cart-count'.(WC()->cart->get_cart_contents_count() > 99 ? ' cart--big': '').'">
+				<span>'.WC()->cart->get_cart_contents_count().'</span>
+			</div>';
+		} ?>
+	</a>	
+	<?php
+	$fragments['a.cart-customlocation'] = ob_get_clean();
+	return $fragments; 
+}
+
+function isUserAdmin(){
+	$user = wp_get_current_user();
+	$allowed_roles = array('administrator');
+	if( array_intersect($allowed_roles, $user->roles ) || !is_user_logged_in()){
+		return true;
+	}
+	return false;
+}
+
+add_filter('woocommerce_product_related_products_heading', 'custom_related_products_heading');
+function custom_related_products_heading() {
+	$siteOptions = get_field('products', 'options');
+	$customheading = $siteOptions['related_products_heading'];
+    if(!empty($customheading)){
+		return $customheading;
+	}
+	return 'POTREBBE PIACERTI ANCHE 2';
+}
+function add_img_wrapper_start() {
+	woocommerce_show_product_loop_sale_flash();
+    echo '<div class="archive-img-wrap">';
+}
+add_action( 'woocommerce_before_shop_loop_item_title', 'add_img_wrapper_start', 5, 2 );
+
+remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_show_product_loop_sale_flash' );
+
+function add_img_wrapper_close() {
+    echo '</div>';
+}
+add_action( 'woocommerce_before_shop_loop_item_title', 'add_img_wrapper_close', 12, 2 );
+
+add_filter( 'wc_add_to_cart_message_html', 'empty_wc_add_to_cart_message', 10, 2);
+function empty_wc_add_to_cart_message( $message, $products ) { 
+    return ''; 
+}; 
+
+function getProductCategoriesList() {
+    $product_categories = get_terms( $args = array(
+        'taxonomy'   => "product_cat",
+        'hide_empty' => false,
+        'parent'     => 0,
+    ) );
+    $list = array();
+    foreach( $product_categories as $cat ){
+		if($cat->slug !== 'uncategorized'){
+			$bannerImage = get_field( 'banner_image', 'product_cat_'.$cat->term_id );
+			$link = get_term_link( $cat->term_id, 'product_cat' );
+			$term_description = strip_tags(term_description($cat->term_id ));
+			$list[] = array( $cat->term_id, $cat->name, $link, $bannerImage, $term_description, $cat->slug );
+		}		        
+    }
+    return $list;
 }

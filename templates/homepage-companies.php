@@ -177,4 +177,36 @@
     </div>
 </section>
 <!-- Login/Register Ends -->
+
+<!-- Contact Section -->
+<section class="contact--company highlighted_section">
+    <div class="container">
+        <div class="row">
+            <?php
+                $contact = get_field('contact');
+                $title = $contact['title'];
+                $description = $contact['description'];
+                $form = $contact['contact_form'];
+            ?>
+            <div class="col">
+                <?php
+                    if(!empty($title)){
+                        echo '<h2 class="heading--green-light">'.$title.'</h2>';
+                    }
+                    if(!empty($description)){
+                        echo $description;
+                    }
+                ?>
+            </div>
+            <div class="col">
+                <?php
+                    if(!empty($form)){
+                        echo do_shortcode("$form");
+                    }
+                ?>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Contact Section Ends -->
 <?php get_footer(); ?>
